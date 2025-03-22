@@ -1,0 +1,93 @@
+<header>
+    <div class="header-container">
+        <h1>My E-Commerce Store</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/cart">Cart</a>
+            <a href="/contact">Contact Us</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    /* General header styling */
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: linear-gradient(90deg, #001a33, #0a2540); /* Gradient background */
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    /* Store name styling */
+    .header-container h1 {
+        font-size: 2rem; /* Larger and bold font */
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        background: linear-gradient(90deg, #f97316, #ec4899); /* Gradient text */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+    
+    /* Navigation styling */
+    .header-container nav {
+        display: flex;
+        gap: 20px; /* Increased spacing for modern layout */
+    }
+    
+    /* Navigation links */
+    .header-container nav a {
+        text-decoration: none;
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 20px; /* Rounded button-like links */
+        background: linear-gradient(90deg, #f97316, #ec4899); /* Gradient buttons */
+        transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    }
+    
+    /* Hover and active link styling */
+    .header-container nav a:hover {
+        background: linear-gradient(90deg, #ec4899, #f97316); /* Reverse gradient */
+        transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+    
+    .header-container nav a:active {
+        background: #003f7f; /* Uniform darker blue for active state */
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 20px;
+        }
+    
+        .header-container nav {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        .header-container h1 {
+            font-size: 1.8rem;
+        }
+    
+        .header-container nav a {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+    }
+    </style>

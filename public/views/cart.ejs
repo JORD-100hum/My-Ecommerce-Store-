@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - E-Commerce</title>
+    <style>
+        /* General container styling */
+        .container {
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            background-color: #001a33; /* Dark blue background */
+            border-radius: 12px;
+        }
+
+        /* Page heading */
+        .container h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Cart table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: transparent; /* Transparent for gradient rows */
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            color: white;
+        }
+
+        thead th {
+            padding: 15px;
+            font-weight: bold;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #004080; /* Darker blue for separator */
+            vertical-align: middle;
+            background: linear-gradient(90deg, #0a2540, #001a33); /* Subtle blue gradient */
+            color: #cfd8dc; /* Light grey */
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Buttons for quantity control */
+        form button {
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+            margin: 0 5px;
+        }
+
+        form button:hover {
+            background: linear-gradient(90deg, #ec4899, #f97316); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+
+        form span {
+            margin: 0 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Remove button styling */
+        form button[type="submit"] {
+            background-color: #dc3545;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #a71d2a;
+        }
+
+        /* Totals section */
+        h3, h4 {
+            text-align: right;
+            margin: 10px 0;
+            color: white;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: #cfd8dc; /* Light grey */
+        }
+
+        .container a {
+            text-decoration: none;
+        }
+
+        /* Checkout button */
+        .checkout-btn {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(90deg, #28a745, #3ed168); /* Green gradient */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(90deg, #3ed168, #28a745); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+
+        /* Empty cart message */
+        .container p {
+            text-align: center;
+            color: #cfd8dc; /* Light grey */
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include('header') %>
+    <div class="container">
+        <h2>Your Cart</h2>
+
+        <% if (cart.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><%= item.Name %></td>
+                            <td><%= item.Description %></td>
+                            <td>$<%= item.Cost %></td>
+                            <td>
+                                <!-- Quantity Control -->
+                                <form action="/update-quantity" method="POST">
+                                    <input type="hidden" name="productID" value="<%= item.ID %>">
+                                    <button type="submit" name="action" value="decrease">-</button>
+                                    <span><%= item.quantity %></span>
+                                    <button type="submit" name="action" value="increase">+</button>
+                                </form>
+                            </td>
+                            <td>$<%= (item.Cost * item.quantity).toFixed(2) %></td>
+                            <td>
+                                <form action="/remove-from-cart" method="POST">
+                                    <input type="hidden" name="productID" value="<%= item.ID %>">
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+            <h3>Total: $<%= total.toFixed(2) %></h3>
+            <h4>Tax (7%): $<%= tax.toFixed(2) %></h4>
+            <h4>Shipping (1%): $<%= shipping.toFixed(2) %></h4>
+            <h3>Grand Total: $<%= grandTotal.toFixed(2) %></h3>
+
+            <!-- Button to proceed to checkout -->
+            <a href="/checkout"><button class="checkout-btn">Proceed to Checkout</button></a>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+    </div>
+    <%- include('footer') %>
+</body>
+</html>

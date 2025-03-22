@@ -1,0 +1,44 @@
+
+<style>
+    /* General footer styling */
+/* Apply styles to the entire page */
+/* General Page Styling */
+html, body {
+    height: 50vh; /* Ensure the page takes the full height of the viewport */
+    margin: 0; /* Remove default margins */
+}
+
+/* Flexbox Layout for Page */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content; /* Full viewport height */
+}
+
+/* Main Content Flex Grow */
+.container main {
+    flex: 1; /* Fills available space, pushing footer to the bottom */
+}
+
+/* Footer Styling */
+.footer-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40; /* Dark gray background */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    border-top: 3px solid #007BFF; /* Blue border for style */
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow at the top */
+}
+
+
+
+   
+
+</style>
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2024 My E-Commerce Store. All Rights Reserved.</p>
+    </div>
+</footer>

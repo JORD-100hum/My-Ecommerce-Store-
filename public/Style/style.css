@@ -1,0 +1,100 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Quantity Control */
+form {
+    display: flex;
+    align-items: center;
+}
+
+form button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+form span {
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
+/* Cart Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background-color: #28a745;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 12px 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    ul li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+}

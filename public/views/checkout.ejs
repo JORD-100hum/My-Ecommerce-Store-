@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - E-Commerce</title>
+    <style>
+        /* General container styling */
+        .container {
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            background-color: #001a33; /* Dark blue background */
+            border-radius: 12px;
+            color: white;
+        }
+
+        /* Page heading */
+        .container h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: transparent; /* Transparent to allow gradient rows */
+        }
+
+        thead {
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            color: white;
+        }
+
+        thead th {
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        tbody td {
+            padding: 12px;
+            text-align: center;
+            color: #cfd8dc; /* Light grey text */
+            background: linear-gradient(90deg, #0a2540, #001a33); /* Subtle blue gradient for rows */
+            border-bottom: 1px solid #004080; /* Darker blue for separator */
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Checkout total section */
+        .checkout-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .checkout-total p {
+            color: #cfd8dc; /* Light grey */
+        }
+
+        /* Proceed to payment button */
+        button {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(90deg, #28a745, #3ed168); /* Green gradient */
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #3ed168, #28a745); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+
+        /* Empty cart message */
+        .container p {
+            text-align: center;
+            color: #cfd8dc; /* Light grey */
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include('header') %>
+    <div class="container">
+        <h2>Checkout</h2>
+        <% if (cart.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><%= item.Name %></td>
+                            <td><%= item.quantity %></td>
+                            <td>$<%= item.Cost %></td>
+                            <td>$<%= (item.Cost * item.quantity).toFixed(2) %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="checkout-total">
+                <p>Total: $<%= total.toFixed(2) %></p>
+                <p>Tax: $<%= tax.toFixed(2) %></p>
+                <p>Shipping: $<%= shipping.toFixed(2) %></p>
+                <p>Grand Total: $<%= grandTotal.toFixed(2) %></p>
+            </div>
+            <!-- Proceed to payment button -->
+            <button>Proceed to Payment</button>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+    </div>
+    <%- include('footer') %>
+</body>
+</html>

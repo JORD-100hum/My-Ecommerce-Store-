@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - E-Commerce</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #001a33; /* Dark blue background */
+            color: white;
+        }
+
+        /* Full-page container */
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center;
+            padding: 40px;
+            background-color: #0a2540; /* Slightly lighter blue for content */
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 900px; /* Limit width */
+            margin: 20px auto; /* Center horizontally */
+            text-align: center;
+        }
+
+        /* Page heading */
+        .container h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        /* Contact information */
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #cfd8dc; /* Light grey text */
+        }
+
+        .contact-info p strong {
+            color: #f97316; /* Orange for emphasis */
+        }
+
+        /* Contact form */
+        .contact-form {
+            width: 100%; /* Full width within container */
+            margin-bottom: 40px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 1rem;
+            color: white;
+            margin-bottom: 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #cfd8dc;
+            margin-bottom: 15px;
+            background-color: #0a2540; /* Slightly lighter blue */
+            color: white;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .contact-form button {
+            background: linear-gradient(90deg, #28a745, #3ed168); /* Green gradient */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+            width: 100%;
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(90deg, #3ed168, #28a745); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+
+        /* Map section */
+        .map {
+            width: 100%; /* Full width */
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h2 {
+                font-size: 2rem;
+            }
+
+            .contact-info p {
+                font-size: 1.2rem;
+            }
+
+            .contact-form button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('header') %>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <p><strong>Phone:</strong> 123-456-7890</p>
+            <p><strong>Email:</strong> info@mystore.com</p>
+            <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form action="/submit-contact" method="POST">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Embedded Map -->
+        <div class="map">
+            <h3>Find Us</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345090763!2d144.96305771531685!3d-37.8136279797517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727fef7db1a2b!2s123%20Main%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2sin!4v1647288016780!5m2!1sen!2sin" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+</body>
+</html>

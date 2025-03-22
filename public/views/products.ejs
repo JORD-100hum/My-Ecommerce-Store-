@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - E-Commerce</title>
+    <style>
+        /* General container styling */
+        .container {
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            background-color: #001a33; /* Dark blue background */
+            border-radius: 12px;
+            color: white;
+        }
+
+        /* Page heading */
+        .container h2 {
+            text-align: center;
+            color: #f97316; /* Orange text */
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        /* Cart total section */
+        .container p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #cfd8dc; /* Light grey for text */
+        }
+
+        /* Grid styling for the product list */
+        ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        /* Individual product card */
+        ul li {
+            background-color: #0a2540; /* Slightly lighter blue */
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Product card hover effect */
+        ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Product name styling */
+        ul li h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #f97316; /* Orange for emphasis */
+        }
+
+        /* Product description and price */
+        ul li p {
+            margin: 10px 0;
+            color: #cfd8dc; /* Light grey */
+        }
+
+        /* Add to Cart button styling */
+        ul li button {
+            background: linear-gradient(90deg, #f97316, #ec4899); /* Orange to pink gradient */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        /* Add to Cart button hover effect */
+        ul li button:hover {
+            background: linear-gradient(90deg, #ec4899, #f97316); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+
+        /* Go to Cart button styling */
+        .container a button {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(90deg, #28a745, #3ed168); /* Green gradient */
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            text-decoration: none; /* Remove underline */
+        }
+
+        /* Go to Cart button hover effect */
+        .container a button:hover {
+            background: linear-gradient(90deg, #3ed168, #28a745); /* Reverse gradient */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <%- include('header') %>
+    <div class="container">
+        <h2>Product List</h2>
+
+        <!-- Display the cart total amount -->
+        <% if (cartTotal > 0) { %>
+            <p><strong>Cart Total: $<%= cartTotal.toFixed(2) %></strong></p>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
+
+        <ul>
+            <% products.forEach(product => { %>
+                <li>
+                    <!-- Product details -->
+                    <h3><%= product.Name %></h3>
+                    <p><%= product.Description %></p>
+                    <p>Price: $<%= product.Cost %></p>
+
+                    <!-- Add to Cart form -->
+                    <form action="/add-to-cart" method="POST">
+                        <input type="hidden" name="productID" value="<%= product.ID %>">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+
+        <!-- Button to go to the cart page -->
+        <a href="/cart"><button>Go to Cart</button></a>
+    </div>
+    <%- include('footer') %>
+</body>
+</html>
